@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.chinabike.plugins.R;
+import com.chinabike.plugins.FakeR;
 import com.chinabike.plugins.mip.common.LocalImageHelper;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -55,7 +55,7 @@ public class AlbumViewPager extends ViewPager implements MatrixImageView.OnMovin
 
 		@Override
 		public void onProgressUpdate(String arg0, View view, int current, int total) {
-			TextView loadText = (TextView) mView.findViewById(R.id.current_procress);
+			TextView loadText = (TextView) mView.findViewById(FakeR.getId(getContext(), "id", "current_procress"));
 			loadText.setText(String.valueOf(100 * current / total) + "%");
 			loadText.bringToFront();
 		}
@@ -137,10 +137,10 @@ public class AlbumViewPager extends ViewPager implements MatrixImageView.OnMovin
 		public Object instantiateItem(ViewGroup viewGroup, int position) {
 			//注意，这里不可以加inflate的时候直接添加到viewGroup下，而需要用addView重新添加
 			//因为直接加到viewGroup下会导致返回的view为viewGroup
-			View imageLayout = inflate(getContext(),R.layout.item_album_pager, null);
+			View imageLayout = inflate(getContext(), FakeR.getId(getContext(), "layout", "item_album_pager"), null);
 			viewGroup.addView(imageLayout);
 			assert imageLayout != null;
-			MatrixImageView imageView = (MatrixImageView) imageLayout.findViewById(R.id.image);
+			MatrixImageView imageView = (MatrixImageView) imageLayout.findViewById(FakeR.getId(getContext(), "id", "image"));
 			imageView.setOnMovingListener(AlbumViewPager.this);
 			imageView.setOnSingleTapListener(onSingleTapListener);
 			String path=paths.get(position);
@@ -183,10 +183,10 @@ public class AlbumViewPager extends ViewPager implements MatrixImageView.OnMovin
 		public Object instantiateItem(ViewGroup viewGroup, int position) {
 			//注意，这里不可以加inflate的时候直接添加到viewGroup下，而需要用addView重新添加
 			//因为直接加到viewGroup下会导致返回的view为viewGroup
-			View imageLayout = inflate(getContext(), R.layout.item_album_pager, null);
+			View imageLayout = inflate(getContext(), FakeR.getId(getContext(), "layout", "item_album_pager"), null);
 			viewGroup.addView(imageLayout);
 			assert imageLayout != null;
-			MatrixImageView imageView = (MatrixImageView) imageLayout.findViewById(R.id.image);
+			MatrixImageView imageView = (MatrixImageView) imageLayout.findViewById(FakeR.getId(getContext(), "id", "image"));
 			imageView.setOnMovingListener(AlbumViewPager.this);
 			imageView.setOnSingleTapListener(onSingleTapListener);
 			LocalImageHelper.LocalFile path=paths.get(position);
