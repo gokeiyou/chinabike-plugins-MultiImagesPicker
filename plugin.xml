@@ -86,7 +86,7 @@
         <!-- <source-file src="src/android/Library/res/values/strings.xml" target-dir="res/values"/> -->
 
         <config-file target="res/values/strings.xml" parent="/*">
-            <string name="app_name">多图选择</string>
+            <!-- <string name="app_name">多图选择</string> -->
             <string name="launcher_name">@string/app_name</string>
             <string name="activity_name">@string/launcher_name</string>
 
