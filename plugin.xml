@@ -104,6 +104,9 @@
         <source-file src="src/android/Library/res/values-w820dp/standard_dimens.xml" target-dir="res/values-w820dp"/>
         <source-file src="src/android/Library/res/values-w820dp/styles.xml" target-dir="res/values-w820dp"/>
 
+        <source-file src="libs/appcompat-v7-22.2.0-sources.jar" target-dir="libs" />
+        <source-file src="libs/support-annotations-22.2.0.jar" target-dir="libs" />
+        <source-file src="libs/support-v4-22.2.0-sources.jar" target-dir="libs" />
         <source-file src="libs/uil.jar" target-dir="libs" />
     </platform>
 
