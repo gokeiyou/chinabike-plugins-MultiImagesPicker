@@ -27,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chinabike.plugins.R;
+import com.chinabike.plugins.FakeR;
 import com.chinabike.plugins.mip.AppManager;
 import com.chinabike.plugins.mip.common.ExtraKey;
 import com.chinabike.plugins.mip.common.LocalImageHelper;
@@ -57,8 +57,7 @@ import java.util.Set;
  * @Description:相片列表
  * @date 2016年2月22日16:20:11
  */
-public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.OnSingleTapListener, View.OnClickListener
-        , CompoundButton.OnCheckedChangeListener {
+public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.OnSingleTapListener, CompoundButton.OnCheckedChangeListener {
 
     GridView gridView;
     TextView title;//标题
@@ -79,7 +78,7 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.local_album_detail);
+        setContentView(FakeR.getId(this, "layout", "local_album_detail"));
         Intent intent = getIntent();
         maximumImagesCount = intent.getIntExtra("MAX_IMAGES", 20);
         desiredWidth = intent.getIntExtra("WIDTH", 0);
@@ -89,24 +88,48 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
             finish();
             return;
         }
-        title = (TextView) findViewById(R.id.album_title);
-        finish = (TextView) findViewById(R.id.album_finish);
-        headerFinish = (TextView) findViewById(R.id.header_finish);
-        gridView = (GridView) findViewById(R.id.gridview);
-        titleBar = findViewById(R.id.album_title_bar);
-        viewpager = (AlbumViewPager) findViewById(R.id.albumviewpager);
-        pagerContainer = findViewById(R.id.pagerview);
-        mCountView = (TextView) findViewById(R.id.header_bar_photo_count);
+        title = (TextView) findViewById(FakeR.getId(this, "id", "album_title"));
+        finish = (TextView) findViewById(FakeR.getId(this, "id", "album_finish"));
+        headerFinish = (TextView) findViewById(FakeR.getId(this, "id", "header_finish"));
+        gridView = (GridView) findViewById(FakeR.getId(this, "id", "gridview"));
+        titleBar = findViewById(FakeR.getId(this, "id", "album_title_bar"));
+        viewpager = (AlbumViewPager) findViewById(FakeR.getId(this, "id", "albumviewpager"));
+        pagerContainer = findViewById(FakeR.getId(this, "id", "pagerview"));
+        mCountView = (TextView) findViewById(FakeR.getId(this, "id", "header_bar_photo_count"));
         viewpager.setOnPageChangeListener(pageChangeListener);
         viewpager.setOnSingleTapListener(this);
-        mBackView = (ImageView) findViewById(R.id.header_bar_photo_back);
-        headerBar = findViewById(R.id.album_item_header_bar);
-        checkBox = (CheckBox) findViewById(R.id.checkbox);
+        mBackView = (ImageView) findViewById(FakeR.getId(this, "id", "header_bar_photo_back"));
+        headerBar = findViewById(FakeR.getId(this, "id", "album_item_header_bar"));
+        checkBox = (CheckBox) findViewById(FakeR.getId(this, "id", "checkbox"));
         checkBox.setOnCheckedChangeListener(this);
-        mBackView.setOnClickListener(this);
-        finish.setOnClickListener(this);
-        headerFinish.setOnClickListener(this);
-        findViewById(R.id.album_back).setOnClickListener(this);
+        mBackView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hideViewPager();
+            }
+        });
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helper.setResultOk(true);
+                doActivityResult();
+//                new ResizeImagesTask().execute(fileNames.entrySet());
+            }
+        });
+        headerFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                helper.setResultOk(true);
+                doActivityResult();
+//                new ResizeImagesTask().execute(fileNames.entrySet());
+            }
+        });
+        findViewById(FakeR.getId(this, "id", "album_back")).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         folder = getIntent().getExtras().getString(ExtraKey.LOCAL_FOLDER_NAME);
         new Thread(new Runnable() {
@@ -149,7 +172,7 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
     private void showViewPager(int index) {
         pagerContainer.setVisibility(View.VISIBLE);
         gridView.setVisibility(View.GONE);
-        findViewById(R.id.album_title_bar).setVisibility(View.GONE);
+        findViewById(FakeR.getId(this, "id", "album_title_bar")).setVisibility(View.GONE);
         viewpager.setAdapter(viewpager.new LocalViewPagerAdapter(currentFolder));
         viewpager.setCurrentItem(index);
         mCountView.setText((index + 1) + "/" + currentFolder.size());
@@ -171,7 +194,7 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
     private void hideViewPager() {
         pagerContainer.setVisibility(View.GONE);
         gridView.setVisibility(View.VISIBLE);
-        findViewById(R.id.album_title_bar).setVisibility(View.VISIBLE);
+        findViewById(FakeR.getId(this, "id", "album_title_bar")).setVisibility(View.VISIBLE);
         AnimationSet set = new AnimationSet(true);
         ScaleAnimation scaleAnimation = new ScaleAnimation(1, (float) 0.9, 1, (float) 0.9, pagerContainer.getWidth() / 2, pagerContainer.getHeight() / 2);
         scaleAnimation.setDuration(200);
@@ -225,24 +248,6 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.header_bar_photo_back:
-                hideViewPager();
-                break;
-            case R.id.album_finish:
-            case R.id.header_finish:
-                helper.setResultOk(true);
-                doActivityResult();
-//                new ResizeImagesTask().execute(fileNames.entrySet());
-                break;
-            case R.id.album_back:
-                finish();
-                break;
-        }
-    }
-
     private void doActivityResult() {
 //        Intent data = new Intent();
         Uri uri;
@@ -256,7 +261,7 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
                 setResult(Activity.RESULT_CANCELED);
             } else {
                 int index = 0;
-                for (LocalImageHelper.LocalFile localFile:checkedItems) {
+                for (LocalImageHelper.LocalFile localFile : checkedItems) {
                     uri = Uri.parse(localFile.getOriginalUri());
                     objects = getImgInfo(uri);
                     name = objects[0].toString();
@@ -340,9 +345,9 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
             options = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
                     .cacheOnDisk(false)
-                    .showImageForEmptyUri(R.drawable.cb_no_pic_small)
-                    .showImageOnFail(R.drawable.cb_no_pic_small)
-                    .showImageOnLoading(R.drawable.cb_no_pic_small)
+                    .showImageForEmptyUri(FakeR.getId(context, "drawable", "cb_no_pic_small"))
+                    .showImageOnFail(FakeR.getId(context, "drawable", "cb_no_pic_small"))
+                    .showImageOnLoading(FakeR.getId(context, "drawable", "cb_no_pic_small"))
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .setImageSize(new ImageSize(app.getQuarterWidth(), 0))
                     .displayer(new SimpleBitmapDisplayer()).build();
@@ -370,9 +375,9 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
             if (convertView == null || convertView.getTag() == null) {
                 viewHolder = new ViewHolder();
                 LayoutInflater inflater = getLayoutInflater();
-                convertView = inflater.inflate(R.layout.simple_list_item, null);
-                viewHolder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
-                viewHolder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
+                convertView = inflater.inflate(FakeR.getId(m_context, "layout", "simple_list_item"), null);
+                viewHolder.imageView = (ImageView) convertView.findViewById(FakeR.getId(m_context, "id", "imageView"));
+                viewHolder.checkBox = (CheckBox) convertView.findViewById(FakeR.getId(m_context, "id", "checkbox"));
                 viewHolder.checkBox.setOnCheckedChangeListener(LocalAlbumDetail.this);
                 convertView.setTag(viewHolder);
             } else {
@@ -410,7 +415,7 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
             try {
                 Iterator<Map.Entry<String, Integer>> i = fileNames.iterator();
                 Bitmap bmp;
-                while(i.hasNext()) {
+                while (i.hasNext()) {
                     Map.Entry<String, Integer> imageInfo = i.next();
                     File file = new File(imageInfo.getKey());
                     int rotate = imageInfo.getValue().intValue();
@@ -422,8 +427,8 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
                     int height = options.outHeight;
                     float scale = calculateScale(width, height);
                     if (scale < 1) {
-                        int finalWidth = (int)(width * scale);
-                        int finalHeight = (int)(height * scale);
+                        int finalWidth = (int) (width * scale);
+                        int finalHeight = (int) (height * scale);
                         int inSampleSize = calculateInSampleSize(options, finalWidth, finalHeight);
                         options = new BitmapFactory.Options();
                         options.inSampleSize = inSampleSize;
@@ -440,12 +445,12 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
                     } else {
                         try {
                             bmp = this.tryToGetBitmap(file, null, rotate, false);
-                        } catch(OutOfMemoryError e) {
+                        } catch (OutOfMemoryError e) {
                             options = new BitmapFactory.Options();
                             options.inSampleSize = 2;
                             try {
                                 bmp = this.tryToGetBitmap(file, options, rotate, false);
-                            } catch(OutOfMemoryError e2) {
+                            } catch (OutOfMemoryError e2) {
                                 options = new BitmapFactory.Options();
                                 options.inSampleSize = 4;
                                 try {
@@ -461,7 +466,7 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
                     al.add(Uri.fromFile(file).toString());
                 }
                 return al;
-            } catch(IOException e) {
+            } catch (IOException e) {
                 try {
                     asyncTaskError = e;
                     for (int i = 0; i < al.size(); i++) {
@@ -469,7 +474,7 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
                         File file = new File(uri);
                         file.delete();
                     }
-                } catch(Exception exception) {
+                } catch (Exception exception) {
                     // the finally does what we want to do
                 } finally {
                     return new ArrayList<String>();
@@ -579,8 +584,8 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
     }
 
     private int calculateNextSampleSize(int sampleSize) {
-        double logBaseTwo = (int)(Math.log(sampleSize) / Math.log(2));
-        return (int)Math.pow(logBaseTwo + 1, 2);
+        double logBaseTwo = (int) (Math.log(sampleSize) / Math.log(2));
+        return (int) Math.pow(logBaseTwo + 1, 2);
     }
 
     private float calculateScale(int width, int height) {
@@ -589,15 +594,15 @@ public class LocalAlbumDetail extends BaseActivity implements MatrixImageView.On
         float scale = 1.0f;
         if (desiredWidth > 0 || desiredHeight > 0) {
             if (desiredHeight == 0 && desiredWidth < width) {
-                scale = (float)desiredWidth/width;
+                scale = (float) desiredWidth / width;
             } else if (desiredWidth == 0 && desiredHeight < height) {
-                scale = (float)desiredHeight/height;
+                scale = (float) desiredHeight / height;
             } else {
                 if (desiredWidth > 0 && desiredWidth < width) {
-                    widthScale = (float)desiredWidth/width;
+                    widthScale = (float) desiredWidth / width;
                 }
                 if (desiredHeight > 0 && desiredHeight < height) {
-                    heightScale = (float)desiredHeight/height;
+                    heightScale = (float) desiredHeight / height;
                 }
                 if (widthScale < heightScale) {
                     scale = widthScale;

@@ -46,6 +46,7 @@
         </config-file>
 
         <source-file src="src/android/com/chinabike/plugins/MultiImagesPicker.java" target-dir="src/com/chinabike/plugins"/>
+        <source-file src="src/android/com/chinabike/plugins/FakeR.java" target-dir="src/com/chinabike/plugins"/>
         <source-file src="src/android/Library/src/mip/AppContext.java" target-dir="src/com/chinabike/plugins/mip"/>
         <source-file src="src/android/Library/src/mip/AppManager.java" target-dir="src/com/chinabike/plugins/mip"/>
         <source-file src="src/android/Library/src/mip/common/ExtraKey.java" target-dir="src/com/chinabike/plugins/mip/common"/>

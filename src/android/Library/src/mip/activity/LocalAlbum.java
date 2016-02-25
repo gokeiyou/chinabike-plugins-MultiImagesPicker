@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chinabike.plugins.R;
+import com.chinabike.plugins.FakeR;
 import com.chinabike.plugins.mip.common.ExtraKey;
 import com.chinabike.plugins.mip.common.ImageUtils;
 import com.chinabike.plugins.mip.common.LocalImageHelper;
@@ -60,15 +60,15 @@ public class LocalAlbum extends BaseActivity {
         desiredWidth = intent.getIntExtra("WIDTH", 0);
         desiredHeight = intent.getIntExtra("HEIGHT", 0);
         quality = intent.getIntExtra("QUALITY", 100);
-        setContentView(R.layout.local_album);
-        listView = (ListView) findViewById(R.id.local_album_list);
+        setContentView(FakeR.getId(this, "layout", "local_album"));
+        listView = (ListView) findViewById(FakeR.getId(this, "id", "local_album_list"));
 //        camera = findViewById(R.id.loacal_album_camera);
 //        camera.setOnClickListener(onClickListener);
 //        camera.setVisibility(View.GONE);
-        progress = (ImageView) findViewById(R.id.progress_bar);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.rotate_loading);
+        progress = (ImageView) findViewById(FakeR.getId(this, "id", "progress_bar"));
+        Animation animation = AnimationUtils.loadAnimation(this, FakeR.getId(this, "anim", "rotate_loading"));
         progress.startAnimation(animation);
-        findViewById(R.id.album_back).setOnClickListener(new View.OnClickListener() {
+        findViewById(FakeR.getId(this, "id", "album_back")).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -234,9 +234,9 @@ public class LocalAlbum extends BaseActivity {
             options = new DisplayImageOptions.Builder()
                     .cacheInMemory(true)
                     .cacheOnDisk(false)
-                    .showImageForEmptyUri(R.drawable.cb_no_pic_small)
-                    .showImageOnFail(R.drawable.cb_no_pic_small)
-                    .showImageOnLoading(R.drawable.cb_no_pic_small)
+                    .showImageForEmptyUri(FakeR.getId(context, "drawable", "cb_no_pic_small"))
+                    .showImageOnFail(FakeR.getId(context, "drawable", "cb_no_pic_small"))
+                    .showImageOnLoading(FakeR.getId(context, "drawable", "cb_no_pic_small"))
                     .bitmapConfig(Bitmap.Config.RGB_565)
                     .setImageSize(new ImageSize(app.getQuarterWidth(), 0))
                     .displayer(new SimpleBitmapDisplayer()).build();
@@ -277,9 +277,9 @@ public class LocalAlbum extends BaseActivity {
             ViewHolder viewHolder;
             if (convertView == null || convertView.getTag() == null) {
                 viewHolder = new ViewHolder();
-                convertView = LayoutInflater.from(context).inflate(R.layout.item_albumfoler, null);
-                viewHolder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
-                viewHolder.textView = (TextView) convertView.findViewById(R.id.textview);
+                convertView = LayoutInflater.from(context).inflate(FakeR.getId(context, "layout", "item_albumfoler"), null);
+                viewHolder.imageView = (ImageView) convertView.findViewById(FakeR.getId(context, "id", "imageView"));
+                viewHolder.textView = (TextView) convertView.findViewById(FakeR.getId(context, "id", "textview"));
                 convertView.setTag(viewHolder);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
