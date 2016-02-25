@@ -83,7 +83,7 @@
         <source-file src="src/android/Library/res/layout/simple_list_item.xml" target-dir="res/layout"/>
 
         <source-file src="src/android/Library/res/values/dimens.xml" target-dir="res/values"/>
-        <source-file src="src/android/Library/res/values/strings.xml" target-dir="res/values"/>
+        <!-- <source-file src="src/android/Library/res/values/strings.xml" target-dir="res/values"/> -->
 
         <config-file target="res/values/strings.xml" parent="/*">
             <string name="app_name">多图选择</string>
