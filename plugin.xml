@@ -82,8 +82,8 @@
         <source-file src="src/android/Library/res/layout/local_album_detail.xml" target-dir="res/layout"/>
         <source-file src="src/android/Library/res/layout/simple_list_item.xml" target-dir="res/layout"/>
 
-        <source-file src="src/android/Libraty/res/values/dimens.xml" target-dir="res/values"/>
-        <!--<source-file src="src/android/Libraty/res/values/strings.xml" target-dir="res/values"/>-->
+        <source-file src="src/android/Library/res/values/dimens.xml" target-dir="res/values"/>
+        <!--<source-file src="src/android/Library/res/values/strings.xml" target-dir="res/values"/>-->
 
         <config-file target="res/values/strings.xml" parent="/res">
             <string name="app_name">多图选择</string>
@@ -97,11 +97,11 @@
             <string name="album_loading">相册初始化中...</string>
         </config-file>
 
-        <source-file src="src/android/Libraty/res/values-w820dp/colors.xml" target-dir="res/values-w820dp"/>
-        <source-file src="src/android/Libraty/res/values-w820dp/dimens.xml" target-dir="res/values-w820dp"/>
-        <source-file src="src/android/Libraty/res/values-w820dp/standard_color.xml" target-dir="res/values-w820dp"/>
-        <source-file src="src/android/Libraty/res/values-w820dp/standard_dimens.xml" target-dir="res/values-w820dp"/>
-        <source-file src="src/android/Libraty/res/values-w820dp/styles.xml" target-dir="res/values-w820dp"/>
+        <source-file src="src/android/Library/res/values-w820dp/colors.xml" target-dir="res/values-w820dp"/>
+        <source-file src="src/android/Library/res/values-w820dp/dimens.xml" target-dir="res/values-w820dp"/>
+        <source-file src="src/android/Library/res/values-w820dp/standard_color.xml" target-dir="res/values-w820dp"/>
+        <source-file src="src/android/Library/res/values-w820dp/standard_dimens.xml" target-dir="res/values-w820dp"/>
+        <source-file src="src/android/Library/res/values-w820dp/styles.xml" target-dir="res/values-w820dp"/>
     </platform>
 
 </plugin>
