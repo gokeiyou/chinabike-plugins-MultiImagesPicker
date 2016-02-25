@@ -103,6 +103,8 @@
         <source-file src="src/android/Library/res/values-w820dp/standard_color.xml" target-dir="res/values-w820dp"/>
         <source-file src="src/android/Library/res/values-w820dp/standard_dimens.xml" target-dir="res/values-w820dp"/>
         <source-file src="src/android/Library/res/values-w820dp/styles.xml" target-dir="res/values-w820dp"/>
+
+        <source-file src="libs/uil.jar" target-dir="libs" />
     </platform>
 
 </plugin>
