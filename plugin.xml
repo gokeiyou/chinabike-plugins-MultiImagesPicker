@@ -83,9 +83,9 @@
         <source-file src="src/android/Library/res/layout/simple_list_item.xml" target-dir="res/layout"/>
 
         <source-file src="src/android/Library/res/values/dimens.xml" target-dir="res/values"/>
-        <!--<source-file src="src/android/Library/res/values/strings.xml" target-dir="res/values"/>-->
+        <source-file src="src/android/Library/res/values/strings.xml" target-dir="res/values"/>
 
-        <config-file target="res/values/strings.xml" parent="/res">
+        <!--<config-file target="res/values/strings.xml" parent="/res">
             <string name="app_name">多图选择</string>
             <string name="launcher_name">@string/app_name</string>
             <string name="activity_name">@string/launcher_name</string>
@@ -95,7 +95,7 @@
 
             <string name="select_album">选择相册</string>
             <string name="album_loading">相册初始化中...</string>
-        </config-file>
+        </config-file>-->
 
         <source-file src="src/android/Library/res/values-w820dp/colors.xml" target-dir="res/values-w820dp"/>
         <source-file src="src/android/Library/res/values-w820dp/dimens.xml" target-dir="res/values-w820dp"/>
