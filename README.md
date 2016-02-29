@@ -6,9 +6,9 @@ MultiImagesPicker.getPictures(onSuccess, onFail, params);
 <br/>
 使用方法：<br/>
 <code>
-navigator.MultiImagesPicker.getPictures(function(result) {<br/>
-    alert(result);<br/>
-}, function(err) {<br/>
-    alert(err);<br/>
-}, { max : 9, width : 0, height : 0, quality : 100 });<br/>
+navigator.MultiImagesPicker.getPictures(function(result) {
+    alert(result);
+}, function(err) {
+    alert(err);
+}, { max : 9, width : 0, height : 0, quality : 100 });
 </code>
