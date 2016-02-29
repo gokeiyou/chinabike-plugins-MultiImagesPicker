@@ -31,10 +31,10 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity
-                android:name=".mip.activity.LocalAlbum"
+                android:name="com.chinabike.plugins.mip.activity.LocalAlbum"
                 android:configChanges="keyboardHidden|orientation|screenSize"
                 android:screenOrientation="portrait" />
-            <activity android:name=".mip.activity.LocalAlbumDetail" />
+            <activity android:name="com.chinabike.plugins.mip.activity.LocalAlbumDetail" />
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
