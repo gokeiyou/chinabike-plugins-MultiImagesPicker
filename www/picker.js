@@ -1,7 +1,7 @@
 cordova.define("chinabike-plugins-MultiImagesPicker.MultiImagesPicker", function(require, exports, module) {
     var exec = require('cordova/exec');
-
-    module.exports = {
+    
+    var MultiImagesPicker = {
         /**
          * @param onSuccess 图片选取成功的回调函数
          * @param onFail 失败的回调函数
@@ -10,5 +10,7 @@ cordova.define("chinabike-plugins-MultiImagesPicker.MultiImagesPicker", function
         getPictures: function(onSuccess, onFail, params) {
             exec(onSuccess, onFail, "MultiImagesPicker", "getPictures", [params]);
         }
-    }
+    };
+    
+    module.exports = MultiImagesPicker;
 });
